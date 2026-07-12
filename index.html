@@ -1,367 +1,872 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Chitrasri S | Portfolio</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Chitrasri | Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
 
-<link rel="stylesheet" href="style.css">
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(-45deg,#0f172a,#1e3a8a,#6d28d9,#0f766e);
+    background-size:400% 400%;
+    animation:gradientBG 12s ease infinite;
+    color:white;
+    overflow-x:hidden;
+}
+
+@keyframes gradientBG{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
+}
+    body::before{
+    content:"";
+    position:fixed;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.08), transparent 25%),
+        radial-gradient(circle at 80% 40%, rgba(0,229,255,.08), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(179,136,255,.08), transparent 30%);
+    animation:rotateBG 25s linear infinite;
+    pointer-events:none;
+    z-index:-1;
+}
+
+@keyframes rotateBG{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:18px 8%;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    color:#00e5ff;
+}
+
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+}
+
+nav ul li a:hover{
+    color:#00e5ff;
+}
+
+
+/* HAMBURGER */
+
+.menu{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+}
+
+
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:120px 10%;
+}
+
+.hero-text{
+    max-width:600px;
+}
+
+
+.hero-text h1{
+    font-size:55px;
+}
+
+.hero-text span{
+    color:#00e5ff;
+}
+
+
+.hero-text h2{
+    color:#b388ff;
+    margin:15px 0;
+    font-size:30px;
+}
+
+
+.hero-text p{
+    font-size:18px;
+    line-height:30px;
+}
+
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    margin-right:10px;
+    padding:12px 30px;
+    background:#00e5ff;
+    color:black;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 20px cyan;
+}
+
+
+
+.hero-img img{
+    width:320px;
+    height:320px;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid cyan;
+    box-shadow:0 0 40px cyan;
+}
+
+
+/* COMMON */
+
+section{
+    padding:90px 10%;
+}
+
+
+.title{
+    text-align:center;
+    font-size:40px;
+    color:#00e5ff;
+    margin-bottom:40px;
+}
+
+
+.card{
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,255,255,.2);
+
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+
+/* SKILLS */
+
+.progress{
+    width:100%;
+    height:20px;
+    background:rgba(255,255,255,.2);
+    border-radius:20px;
+    overflow:hidden;
+    margin:10px 0 25px;
+}
+
+
+.progress div{
+    height:100%;
+    background:#00e5ff;
+    border-radius:20px;
+    text-align:right;
+    padding-right:10px;
+    color:black;
+    font-size:12px;
+    font-weight:bold;
+}
+
+
+
+/* PROJECTS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+.certificate-cards{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.project-card{
+
+    background:rgba(255,255,255,.12);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    transition:.3s;
+
+}
+
+
+.project-card:hover{
+
+    transform:translateY(-10px);
+    box-shadow:0 0 30px cyan;
+
+}
+
+
+.project-card h3{
+
+    color:#00e5ff;
+    margin-bottom:15px;
+
+}
+
+
+
+/* CONTACT */
+
+.contact-buttons{
+
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+
+.contact-buttons a{
+
+    background:#2575fc;
+    color:white;
+    padding:12px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+
+}
+
+
+
+footer{
+
+    text-align:center;
+    padding:20px;
+    background:rgba(0,0,0,.2);
+
+}
+
+
+
+/* MOBILE RESPONSIVE */
+
+
+@media(max-width:768px){
+
+
+nav ul{
+
+    display:none;
+    position:absolute;
+    top:70px;
+    right:20px;
+    background:#222;
+    padding:20px;
+    border-radius:15px;
+    flex-direction:column;
+
+}
+
+
+nav ul.active{
+
+    display:flex;
+
+}
+
+
+.menu{
+
+    display:block;
+
+}
+
+
+
+.hero{
+
+    flex-direction:column;
+    text-align:center;
+
+}
+
+
+
+.hero-text h1{
+
+    font-size:38px;
+
+}
+
+
+
+.hero-img img{
+
+    width:240px;
+    height:240px;
+    margin-top:30px;
+
+}
+
+
+
+.title{
+
+    font-size:32px;
+
+}
+
+
+}
+   
+</style>
+
 </head>
+
+
+
+
 
 <body>
 
-<!-- Navigation -->
 
 <header>
 
-<nav class="navbar">
+<nav>
 
-<div class="logo">Portfolio</div>
+<div class="logo">
+Chitrasri
+</div>
 
-<ul class="nav-links">
+
+<div class="menu" onclick="openMenu()">
+☰
+</div>
+
+
+<ul>
 
 <li><a href="#home">Home</a></li>
-
 <li><a href="#about">About</a></li>
-
 <li><a href="#education">Education</a></li>
-
 <li><a href="#skills">Skills</a></li>
-
 <li><a href="#projects">Projects</a></li>
-
-<li><a href="#internship">Internship</a></li>
-
-<li><a href="#certifications">Certificates</a></li>
-
+<li><a href="#certificates">Certificates</a></li>
 <li><a href="#contact">Contact</a></li>
 
 </ul>
 
+
 </nav>
+    <div class="butterfly-container">
+
+
 
 </header>
 
-<!-- Hero -->
 
-<section id="home" class="hero">
+
+<section class="hero" id="home">
+
 
 <div class="hero-text">
 
-<h1>Hi, I'm <span>Chitrasri S.</span></h1>
+<h1>
+Hello, I'm <span>Chitrasri</span>
+</h1>
 
-<h2 class="typing"></h2>
+
+<h2>
+Frontend Developer
+</h2>
+
 
 <p>
-
-Passionate Artificial Intelligence and Data Science student with an
-interest in Machine Learning, Web Development and Data Analytics.
-Always eager to learn new technologies and solve real-world problems.
-
+Third Year B.Tech Artificial Intelligence & Data Science student passionate about AI, Data Science and Web Development.
 </p>
 
-<a href="#" class="btn">Download Resume</a>
 
-<a href="#contact" class="btn2">Contact Me</a>
+<a href="Resume.pdf" download class="btn">
+Download Resume
+</a>
+
+
+</div>
+
+
+
+<div class="hero-img">
+
+<img src="profile.jpg">
 
 </div>
 
-<div class="hero-image">
-
-<img src="C:\Users\2025\Desktop\sri chitra\profile.jpg.jpeg" alt="Profile">
-
-</div>
 
 </section>
 
-<!-- About -->
+
 
 <section id="about">
 
-<h2 class="title">About Me</h2>
+<h2 class="title">
+About Me
+</h2>
+
 
 <div class="card">
 
 <p>
-
-I am pursuing B.Tech Artificial Intelligence and Data Science at
-Sardar Raja College of Engineering, affiliated with Anna University.
-My goal is to become an AI Engineer and contribute to innovative
-technology solutions.
-
+I am Chitrasri, a Third Year B.Tech (AI & DS) student.
+I enjoy creating responsive websites, AI based applications
+and improving my programming skills through projects and internships.
 </p>
 
-<h3>Strengths</h3>
-
-<ul>
-
-<li>Quick Learner</li>
-
-<li>Problem Solving</li>
-
-<li>Team Work</li>
-
-<li>Leadership</li>
-
-</ul>
-
-<h3>Interests</h3>
-
-<p>
-
-Artificial Intelligence, Data Science,
-Machine Learning, Python Programming,
-Web Development.
-
-</p>
 
 </div>
 
 </section>
 
-<!-- Education -->
+
+
 
 <section id="education">
 
-<h2 class="title">Education</h2>
+<h2 class="title">
+Education
+</h2>
 
-<div class="timeline">
 
-<div class="timeline-item">
+<div class="card">
 
-<h3>B.Tech Artificial Intelligence & Data Science</h3>
+<h3>
+B.Tech Artificial Intelligence & Data Science
+</h3>
 
-<p>Sardar Raja College of Engineering</p>
+<br>
 
-<p>Anna University</p>
+<p>
+Sardar Raja College of Engineering
+</p>
 
-<p>CGPA : 8.32</p>
+<p>
+Anna University | 2024 - 2028
+</p>
+
 
 </div>
 
-</div>
 
 </section>
 
-<!-- Skills -->
+
+
 
 <section id="skills">
 
-<h2 class="title">Skills</h2>
+<h2 class="title">
+Skills
+</h2>
 
-<div class="skills">
 
-<div class="skill">Python</div>
+<div class="card">
 
-<div class="skill">C</div>
 
-<div class="skill">Java</div>
+<p>Python</p>
+<div class="progress">
+<div style="width:90%">90%</div>
+</div>
 
-<div class="skill">HTML</div>
 
-<div class="skill">CSS</div>
+<p>HTML</p>
+<div class="progress">
+<div style="width:80%">80%</div>
+</div>
 
-<div class="skill">JavaScript</div>
 
-<div class="skill">SQL</div>
+<p>CSS</p>
+<div class="progress">
+<div style="width:85%">85%</div>
+</div>
 
-<div class="skill">NumPy</div>
 
-<div class="skill">Pandas</div>
+<p>C++</p>
+<div class="progress">
+<div style="width:90%">90%</div>
+</div>
 
-<div class="skill">Git</div>
-
-<div class="skill">GitHub</div>
-
-<div class="skill">Machine Learning</div>
 
 </div>
 
 </section>
-
-<!-- Projects -->
-
 <section id="projects">
 
-<h2 class="title">Projects</h2>
+<h2 class="title">
+Projects
+</h2>
 
-<div class="project-container">
+
+<div class="cards">
+
 
 <div class="project-card">
 
-<h3>Student Portfolio Website</h3>
+<h3>
+Personal Portfolio Website
+</h3>
 
-<p>Responsive portfolio built using HTML, CSS & JavaScript.</p>
-
-<a href="#">View Project</a>
+<p>
+Responsive portfolio website created using HTML, CSS and JavaScript.
+</p>
 
 </div>
 
+
+
 <div class="project-card">
 
-<h3>Online Book Store</h3>
+<h3>
+Intelligent Doubt Solving Chatbot
+</h3>
 
-<p>E-commerce website using HTML & CSS.</p>
-
-<a href="#">View Project</a>
+<p>
+AI based chatbot that helps students solve academic doubts.
+</p>
 
 </div>
 
-<div class="project-card">
 
-<h3>Python Mini Projects</h3>
-
-<p>Calculator, ATM, Student Management System and more.</p>
-
-<a href="#">View Project</a>
-
-</div>
 
 <div class="project-card">
 
-<h3>AI Chatbot</h3>
+<h3>
+Arduino Raspberry Pi Bluetooth Control
+</h3>
 
-<p>Basic chatbot using Python.</p>
-
-<a href="#">View Project</a>
+<p>
+Automation project using Arduino, Raspberry Pi and Bluetooth technology.
+</p>
 
 </div>
 
 </div>
 
 </section>
-
-<!-- Internship -->
 
 <section id="internship">
 
 <h2 class="title">Internship</h2>
 
-<div class="card">
+<div class="cards">
 
-<h3>Python Programming Internship</h3>
+<div class="project-card">
+<h3>Web Development</h3>
+<p>CodeSpark Software Developments Internship.</p>
+</div>
 
-<p>Organization : Brassy Technologies , Melapalayam</p>
+<div class="project-card">
+<h3>Python Internship</h3>
+<p>Brassy Technologies Pvt Ltd.</p>
+</div>
 
-<p>Duration : 15 days</p>
-
-<p>
-
-Skills Learned:
-Python, NumPy, Pandas,
-OOP, File Handling,
-Mini Projects
-
-</p>
+<div class="project-card">
+<h3>Web Designing</h3>
+<p>Responsive UI and Website Designing.</p>
+</div>
 
 </div>
 
 </section>
 
-<!-- Certifications -->
+</section>
+<section id="certificates">
 
-<section id="certifications">
+<h2 class="title">Certificates</h2>
 
-<h2 class="title">Certifications</h2>
+<div class="certificate-cards">
 
-<div class="certificate-grid">
+<div class="project-card">
 
-<div class="card">NPTEL</div>
+<h3>Web Development Internship</h3>
 
-<div class="card">Coursera</div>
+<p>CodeSpark Software Developments</p>
 
-<div class="card">Infosys Springboard</div>
+<br>
 
-<div class="card">IBM SkillsBuild</div>
+<a href="Codespark.jpg" target="_blank" class="btn">
+    📄 View Certificate
+</a>
+</div>
+
+<div class="project-card">
+
+<h3>Python Internship</h3>
+
+<p>Brassy Technologies Pvt Ltd</p>
+
+<br>
+
+<a href="Brassy.jpg" target="_blank" class="btn">
+    📄 View Certificate
+</a>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- Achievements -->
+<section id="achievements">
 
-<section>
+<h2 class="title">
+Achievements
+</h2>
 
-<h2 class="title">Achievements</h2>
 
 <div class="card">
 
-<ul>
+<ul style="line-height:35px;">
 
-<li>Participated in Technical Workshops</li>
+<li>Completed Web Development Internship</li>
 
-<li>Hackathons</li>
+<li>Completed AI & Data Science Internship</li>
 
-<li>Paper Presentations</li>
+<li>Developed Personal Portfolio Website</li>
 
-<li>Technical Events</li>
+<li>Created AI based mini projects</li>
 
 </ul>
 
+
 </div>
+
 
 </section>
 
-<!-- Contact -->
+
+
 
 <section id="contact">
 
-<h2 class="title">Contact Me</h2>
 
-<form>
+<h2 class="title">
+Contact Me
+</h2>
 
-<input type="text" placeholder="Your Name" required>
 
-<input type="email" placeholder="Your Email" required>
+<div class="card">
 
-<textarea placeholder="Message"></textarea>
 
-<button type="submit">Send Message</button>
+<p><b>Name:</b> Chitrasri</p>
 
-</form>
+<br>
+
+<p><b>Email:</b> l68760417@gmail.com</p>
+
+<br>
+
+<p><b>Phone:</b> 9487621681</p>
+
+<br>
+
+<p><b>Location:</b> Thippanampatti, Tenkasi District</p>
+
+
+
+<div class="contact-buttons">
+
+
+<a href="https://github.com/chitrasri-portfolio" class="btn">
+GitHub
+</a>
+
+
+<a href="https://www.linkedin.com/in/chitrasri-s-4813a4357/" class="btn">
+LinkedIn
+</a>
+
+
+<a href="mailto:168760417@gmail.com" class="btn">
+Email
+</a>
+
+    
+ 
+
+</div>
+
+
+</div>
+
 
 </section>
 
-<!-- Footer -->
+
+
 
 <footer>
 
 <p>
-
-© 2026 Chitrasri S.
-Designed by Chitrasri S.
-
+© 2026 Chitrasri | Portfolio
 </p>
-
-<div>
-
-<a href="#"><i class="fab fa-linkedin"></i></a>
-
-<a href="#"><i class="fab fa-github"></i></a>
-
-<a href="#"><i class="fas fa-envelope"></i></a>
-
-</div>
 
 </footer>
 
-<button id="topBtn">
-<i class="fa-solid fa-arrow-up"></i>
-</button>
 
-<script src="script.js"></script>21:33 06-07-2026
+
+
+<script>
+
+
+function openMenu(){
+
+document.querySelector("nav ul").classList.toggle("active");
+
+}
+
+
+
+// Typing Effect
+
+const words=[
+"Frontend Developer",
+"AI & DS Student",
+"Web Designer"
+];
+
+
+let i=0;
+let j=0;
+let deleting=false;
+
+
+function typing(){
+
+
+let text=words[i];
+
+
+if(!deleting){
+
+document.querySelector(".hero-text h2").textContent=text.substring(0,j++);
+
+}
+
+else{
+
+document.querySelector(".hero-text h2").textContent=text.substring(0,j--);
+
+}
+
+
+
+if(j>text.length){
+
+deleting=true;
+
+setTimeout(typing,1000);
+
+return;
+
+}
+
+
+
+if(j<0){
+
+deleting=false;
+
+i=(i+1)%words.length;
+
+}
+
+
+
+setTimeout(typing,deleting?60:120);
+
+
+}
+
+
+typing();
+
+
+</script>
+
+
 
 </body>
 
 </html>
-```
+
+
+
+
+
+
+
+
